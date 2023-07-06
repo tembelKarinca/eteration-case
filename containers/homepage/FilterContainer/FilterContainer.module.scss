@@ -1,0 +1,72 @@
+.filter_sort_container {
+    div {
+        display: flex;
+        flex-direction: column;
+        min-width: 220px;
+        gap: 20px;
+        padding: 15px;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    label {
+        display: flex;
+    }
+    input {
+        width: 25px;
+        height: 15px;
+        flex: 0 0 25%;
+    }
+    span {
+        color: rgba(51, 51, 51, 0.7);
+        font-size: 12px;
+    }
+}
+.filter_brand_container {
+    div {
+        display: flex;
+        flex-direction: column;
+        min-width: 220px;
+        gap: 20px;
+        padding: 15px;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+
+    label {
+        display: flex;
+    }
+    input {
+        width: 25px;
+        height: 15px;
+        flex: 0 0 25%;
+    }
+    span {
+        color: rgba(51, 51, 51, 0.7);
+        font-size: 12px;
+    }
+    .search {
+        width: 150px;
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
