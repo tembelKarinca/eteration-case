@@ -6,6 +6,8 @@ import { brandFilter } from '@/utils/productFilterHelper'
 export default function FilterBrands() {
     const { productList, setProductList, setFilteredProducts, setIsFiltered } = useContext(ProductContext)
     const [brands, setBrands] = useState([])
+    const [selectedBrands, setSelectedBrands] = useState([])
+
     useEffect(() => {
         const array = []
         productList?.map((prod) => {
@@ -14,11 +16,25 @@ export default function FilterBrands() {
         setBrands(array)
     }, [])
 
+
     const handleBrand = (e) => {
-        const filteredByBrand = brandFilter(productList, e.target.value)
-        setFilteredProducts(filteredByBrand)
-        e.target.checked ? setIsFiltered(true) : setIsFiltered(false)
+
+        setSelectedBrands((values) => e.target.checked ? [...values, e.target.value] : values.filter((value) => value !== e.target.value))
+
     }
+
+    useEffect(() => {
+        console.log(selectedBrands);
+        if (!selectedBrands) {
+            return
+
+        }
+        const filteredByBrand = brandFilter(productList, selectedBrands)
+
+        setFilteredProducts(filteredByBrand)
+        setIsFiltered(!!selectedBrands.length)
+
+    }, [selectedBrands, setFilteredProducts, setIsFiltered, productList])
 
     return (
         <div className={styles.filter_brand_container}>

@@ -6,6 +6,7 @@ import { modelFilter } from '@/utils/productFilterHelper'
 export default function FilterModel({ }) {
   const { productList, setProductList, setFilteredProducts, setIsFiltered } = useContext(ProductContext)
   const [models, setModels] = useState([])
+  const [selectedModels, setSelectedModels] = useState([])
   useEffect(() => {
     const array = []
     productList?.map((prod) => {
@@ -14,10 +15,22 @@ export default function FilterModel({ }) {
     setModels(array)
   }, [])
   const handleModel = (e) => {
-    const filteredByModel = modelFilter(productList, e.target.value)
-    setFilteredProducts(filteredByModel)
-    e.target.checked ? setIsFiltered(true) : setIsFiltered(false)
+    setSelectedModels((values) => e.target.checked ? [...values, e.target.value] : values.filter((value) => value !== e.target.value))
+
   }
+
+  useEffect(() => {
+    console.log(selectedModels);
+    if (!selectedModels) {
+      return
+
+    }
+    const filteredByModel = modelFilter(productList, selectedModels)
+
+    setFilteredProducts(filteredByModel)
+    setIsFiltered(!!selectedModels.length)
+
+  }, [selectedModels, setFilteredProducts, setIsFiltered, productList])
   return (
     <div className={styles.filter_brand_container}>
       <span>Models</span>

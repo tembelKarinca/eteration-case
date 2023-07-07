@@ -1,10 +1,10 @@
 export const brandFilter = (array, value) => {
     return [...array].filter(function (item) {
-        return item.brand === value
+        return value.includes(item.brand)
     })
 }
 export const modelFilter = (array, value) => {
     return [...array].filter(function (item) {
-        return item.model === value
+        return value.includes(item.model)
     })
 }
