@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './ProductContainer.module.scss'
 import Pagination from './Pagination';
-import { paginate } from '../../../pages/api/helper/paginate';
+import { paginate } from '../../../utils/paginate';
 import ProductCard from '@/components/ProductCard';
+import { ProductContext } from '@/pages';
 
-export default function ProductContainer({ data }) {
+
+
+export default function ProductContainer() {
+    const { productList } = useContext(ProductContext)
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 12;
     const onPageChange = (page) => {
         setCurrentPage(page);
     };
-    const paginatedPosts = paginate(data, currentPage, pageSize);
+    const paginatedPosts = paginate(productList, currentPage, pageSize);
+
+
 
     return (
         <>
@@ -25,7 +31,7 @@ export default function ProductContainer({ data }) {
 
             </div>
             <Pagination
-                items={data.length}
+                items={productList?.length}
                 currentPage={currentPage}
                 pageSize={pageSize}
                 onPageChange={onPageChange}
