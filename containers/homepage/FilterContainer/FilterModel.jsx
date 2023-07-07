@@ -4,7 +4,7 @@ import { ProductContext } from '@/pages'
 import { modelFilter } from '@/utils/productFilterHelper'
 
 export default function FilterModel({ }) {
-  const { productList, setProductList } = useContext(ProductContext)
+  const { productList, setProductList, setFilteredProducts, setIsFiltered } = useContext(ProductContext)
   const [models, setModels] = useState([])
   useEffect(() => {
     const array = []
@@ -15,23 +15,26 @@ export default function FilterModel({ }) {
   }, [])
   const handleModel = (e) => {
     const filteredByModel = modelFilter(productList, e.target.value)
-    setProductList(filteredByModel)
+    setFilteredProducts(filteredByModel)
+    e.target.checked ? setIsFiltered(true) : setIsFiltered(false)
   }
   return (
     <div className={styles.filter_brand_container}>
       <span>Models</span>
-      <div>
+      <div className={styles.filter_list_container}>
         <input className={styles.search} type="text" placeholder='search' />
-        {models?.map((model, key) => {
-          return (
-            <label key={key} htmlFor={model}>  <input type="checkbox" id={model} value={model} name="model" onChange={handleModel} ></input> {model} </label>
-          )
-        })}
-
-
+        <div className={styles.filter_list}>
+          {models?.map((model, key) => {
+            return (
+              <label key={key} htmlFor={model}>  <input type="checkbox" id={model} value={model} name="model" onChange={handleModel} ></input> {model} </label>
+            )
+          })}</div>
 
       </div>
 
-    </div>
+
+
+
+    </div >
   )
 }

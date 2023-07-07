@@ -18,20 +18,20 @@ export default function Header() {
         <header className={styles.header}>
 
             <Container>
-                <Row>
-                    <Col md={2}>
+                <Row  >
+                    <Col >
                         <a href="/">
                             <h3>Eteration</h3>
                         </a>
 
                     </Col>
-                    <Col md={8}>
+                    <Col  >
                         <input type="text" placeholder='search' />
                     </Col>
-                    <Col md={2} className='d-flex justify-content-between' >
+                    <Col className='d-flex gap-2  flex-end justify-content-end' >
                         <div className='d-flex gap-2'>
                             <PortfeilIcon />
-                            <p>{total} ₺</p>
+                            <p>{total.toFixed(2)} ₺</p>
                         </div>
                         <div className='d-flex gap-2'>
                             <ProfileIcon />

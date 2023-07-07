@@ -13,22 +13,23 @@ export const ProductContext = createContext()
 export default function Home(props) {
 
   const [productList, setProductList] = useState(props.pageProps.products)
-
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [isFiltered, setIsFiltered] = useState(false)
 
   return (
     <>
 
-      <ProductContext.Provider value={{ productList, setProductList }} >
+      <ProductContext.Provider value={{ productList, setProductList, filteredProducts, setFilteredProducts, isFiltered, setIsFiltered }} >
         <Container>
           <Row>
 
             <Col lg={2}>
               <FilterContainer />
             </Col>
-            <Col lg={8}>
+            <Col xl={8} lg={7}>
               <ProductContainer />
             </Col>
-            <Col lg={2}>
+            <Col xl={2} lg={3}>
               <CartContainer />
             </Col>
 

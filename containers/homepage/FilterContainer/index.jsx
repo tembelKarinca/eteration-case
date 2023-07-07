@@ -7,7 +7,7 @@ import FilterModel from './FilterModel'
 export default function FilterContainer() {
 
     return (
-        <div className='d-flex gap-4 flex-column'>
+        <div className='d-flex mb-5 gap-4 flex-wrap flex-lg-column justify-content-center'>
             <FilterSort />
             <FilterBrands />
             <FilterModel />

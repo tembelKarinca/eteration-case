@@ -5,9 +5,10 @@ import { addToCart, decrementItemQuantity } from '@/store/cartReducer';
 
 export default function PlusMinusInput({ data }) {
     const { dispatch } = useContext(CartContext);
+
     const addToCartHandler = (product) => {
-        dispatch(addToCart(product));
-    };
+        dispatch(addToCart(product))
+    }
     const decrementToCardHandler = (product) => {
         dispatch(decrementItemQuantity(product))
     }

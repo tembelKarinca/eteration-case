@@ -6,7 +6,7 @@ import Checkout from './Checkout'
 export default function CartContainer() {
 
     return (
-        <div className='d-flex gap-4 flex-column'>
+        <div className='d-flex gap-4 flex-column '>
             <Cart />
             <Checkout />
 

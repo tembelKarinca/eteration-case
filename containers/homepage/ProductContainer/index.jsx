@@ -8,13 +8,13 @@ import { ProductContext } from '@/pages';
 
 
 export default function ProductContainer() {
-    const { productList } = useContext(ProductContext)
+    const { productList, isFiltered, filteredProducts } = useContext(ProductContext)
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 12;
     const onPageChange = (page) => {
         setCurrentPage(page);
     };
-    const paginatedPosts = paginate(productList, currentPage, pageSize);
+    const paginatedPosts = paginate(isFiltered ? filteredProducts : productList, currentPage, pageSize);
 
 
 

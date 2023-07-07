@@ -4,7 +4,7 @@ import { ProductContext } from '@/pages'
 import { brandFilter } from '@/utils/productFilterHelper'
 
 export default function FilterBrands() {
-    const { productList, setProductList } = useContext(ProductContext)
+    const { productList, setProductList, setFilteredProducts, setIsFiltered } = useContext(ProductContext)
     const [brands, setBrands] = useState([])
     useEffect(() => {
         const array = []
@@ -16,20 +16,23 @@ export default function FilterBrands() {
 
     const handleBrand = (e) => {
         const filteredByBrand = brandFilter(productList, e.target.value)
-        setProductList(filteredByBrand)
+        setFilteredProducts(filteredByBrand)
+        e.target.checked ? setIsFiltered(true) : setIsFiltered(false)
     }
 
     return (
         <div className={styles.filter_brand_container}>
             <span>Brands</span>
-            <div>
+            <div className={styles.filter_list_container} >
                 <input className={styles.search} type="text" placeholder='search' />
+                <div className={styles.filter_list}>
+                    {brands?.map((brand, key) => {
+                        return (
+                            <label key={key} htmlFor={brand}>  <input type="checkbox" name='brand' id={brand} value={brand} onChange={handleBrand} ></input> {brand} </label>
+                        )
+                    })}
+                </div>
 
-                {brands?.map((brand, key) => {
-                    return (
-                        <label key={key} htmlFor={brand}>  <input type="checkbox" name='brand' id={brand} value={brand} onChange={handleBrand} ></input> {brand} </label>
-                    )
-                })}
 
 
 
